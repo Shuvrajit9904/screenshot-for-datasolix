@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Agentic data conversion to Oracle Fusion, in 39 product screenshots.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Inside a Particle Conversion">
+<meta property="og:description" content="Agentic data conversion to Oracle Fusion, in 39 product screenshots.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/01a-report-top.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#9883;</text></svg>">
+<title>Inside a Particle Conversion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --ink:#0B0E13; --body:#39414C; --muted:#68717E; --faint:#98A1AE;
+  --ground:#E9ECF2; --sunk:#DFE3EB; --surface:#FFFFFF;
+  --line:rgba(11,14,19,.11); --line-strong:rgba(11,14,19,.20);
+  --blue:#1F5AFF;
+  --lift:0 1px 2px rgba(11,14,19,.05), 0 14px 34px -14px rgba(11,14,19,.22);
+  --lift-2:0 2px 5px rgba(11,14,19,.07), 0 28px 56px -18px rgba(11,14,19,.30);
+  --rail:248px; --col:1520px;
+  --f-sans:Figtree,ui-sans-serif,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink:#F2F5F9; --body:#B3BCC8; --muted:#7B8593; --faint:#5C6674;
+    --ground:#090B0F; --sunk:#12161D; --surface:#151A21;
+    --line:rgba(255,255,255,.11); --line-strong:rgba(255,255,255,.20);
+    --blue:#7098FF;
+    --lift:0 1px 2px rgba(0,0,0,.5), 0 18px 42px -16px rgba(0,0,0,.72);
+    --lift-2:0 2px 6px rgba(0,0,0,.6), 0 32px 64px -20px rgba(0,0,0,.86);
+  }
+}
+:root[data-theme="dark"] {
+  --ink:#F2F5F9; --body:#B3BCC8; --muted:#7B8593; --faint:#5C6674;
+  --ground:#090B0F; --sunk:#12161D; --surface:#151A21;
+  --line:rgba(255,255,255,.11); --line-strong:rgba(255,255,255,.20);
+  --blue:#7098FF;
+  --lift:0 1px 2px rgba(0,0,0,.5), 0 18px 42px -16px rgba(0,0,0,.72);
+  --lift-2:0 2px 6px rgba(0,0,0,.6), 0 32px 64px -20px rgba(0,0,0,.86);
+}
+
+*,*::before,*::after { box-sizing:border-box; }
+body { margin:0; background:var(--ground); color:var(--body);
+  font-family:var(--f-sans); font-size:15.5px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+h1,h2,h3 { color:var(--ink); margin:0; font-weight:600; letter-spacing:-.025em; text-wrap:balance; }
+p { margin:0; }
+a { color:var(--blue); }
+:focus-visible { outline:2px solid var(--blue); outline-offset:3px; border-radius:4px; }
+.tag { font-family:var(--f-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--blue); }
+
+.skip { position:absolute; left:-9999px; top:0; z-index:99; padding:10px 16px;
+  background:var(--surface); color:var(--ink); border-radius:0 0 10px 0; box-shadow:var(--lift); }
+.skip:focus { left:0; }
+
+/* ------------------------------------------------------------------ rail -- */
+.rail { position:fixed; inset:0 auto 0 0; width:var(--rail); z-index:10;
+  display:flex; flex-direction:column; gap:28px; padding:38px 24px 28px;
+  background:var(--ground); border-right:1px solid var(--line); overflow-y:auto; }
+.mark { display:flex; flex-direction:column; gap:3px; }
+.mark strong { font-size:19px; color:var(--ink); letter-spacing:-.035em; }
+.mark em { font-family:var(--f-mono); font-style:normal; font-size:9px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.mark a { font-size:13px; margin-top:6px; text-decoration:none; }
+.mark a:hover { text-decoration:underline; }
+.rail nav ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px; }
+.rail nav a { display:flex; gap:10px; align-items:baseline; padding:7px 11px; border-radius:9px;
+  color:var(--body); text-decoration:none; font-size:14px; transition:background .15s, color .15s; }
+.rail nav a span { font-family:var(--f-mono); font-size:9.5px; letter-spacing:.1em; color:var(--faint); }
+.rail nav a:hover { background:color-mix(in srgb, var(--blue) 9%, transparent); color:var(--ink); }
+.rail nav a[aria-current="true"] { background:color-mix(in srgb, var(--blue) 13%, transparent); color:var(--blue); }
+.rail nav a[aria-current="true"] span { color:var(--blue); }
+.rail-foot { margin-top:auto; font-size:12.5px; line-height:1.5; color:var(--muted); }
+
+/* ------------------------------------------------------------------ main -- */
+main { margin-left:var(--rail); padding:52px 48px 0; max-width:var(--col); }
+
+.masthead { padding-bottom:56px; }
+.masthead h1 { font-size:clamp(36px,4.6vw,60px); line-height:1.02; letter-spacing:-.04em; margin:14px 0 20px; }
+.masthead .deck { max-width:66ch; font-size:17px; color:var(--body); }
+.masthead .problem { max-width:66ch; margin-top:16px; color:var(--muted); }
+
+.pillars { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-top:44px; }
+.pillar { background:var(--surface); border:1px solid var(--line); border-radius:16px;
+  padding:24px; display:flex; flex-direction:column; gap:12px; }
+.pillar h3 { font-size:19px; line-height:1.25; }
+.pillar p:last-child { font-size:14.5px; color:var(--body); }
+
+.turn { margin-top:56px; padding-top:40px; border-top:1px solid var(--line-strong);
+  display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
+.turn h2 { font-size:clamp(24px,2.8vw,34px); line-height:1.15; letter-spacing:-.032em; }
+.turn a { display:inline-flex; align-items:center; gap:8px; padding:11px 22px; border-radius:999px;
+  background:var(--ink); color:var(--ground); text-decoration:none; font-size:14.5px; font-weight:500; }
+.turn a:hover { opacity:.88; }
+
+.shots-head { padding:64px 0 8px; }
+.shots-head h2 { font-size:clamp(22px,2.2vw,28px); letter-spacing:-.03em; margin-top:12px; }
+.shots-head p { margin-top:8px; color:var(--muted); }
+
+/* --------------------------------------------------------------- chapter -- */
+.chapter { padding-top:76px; scroll-margin-top:24px; }
+.chapter-head { max-width:74ch; display:flex; flex-direction:column; gap:10px; }
+.chapter-head h2 { font-size:clamp(24px,2.5vw,32px); letter-spacing:-.032em; }
+.chapter-head .lead { color:var(--body); font-size:17px; }
+.chapter-head .span { font-family:var(--f-mono); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--faint); }
+
+/* ----------------------------------------------------------------- plate -- */
+.plate { margin:40px 0 0; display:flex; flex-direction:column; gap:14px; }
+.plate-head { display:grid; grid-template-columns:44px minmax(0,1fr); gap:0 18px; align-items:baseline; }
+.idx { font-family:var(--f-mono); font-size:11px; color:var(--faint); letter-spacing:.08em; }
+.plate-words h3 { font-size:17.5px; }
+.plate-words p { margin-top:5px; max-width:82ch; font-size:14.5px; color:var(--body); }
+
+.shot { display:block; padding:0; border:0; background:none; cursor:zoom-in; width:100%;
+  font:inherit; color:inherit; text-align:left; position:relative; }
+.shot img { display:block; width:100%; height:auto; }
+.open { position:absolute; left:14px; bottom:14px; padding:7px 13px; border-radius:999px;
+  background:color-mix(in srgb, var(--ink) 88%, transparent); color:#fff;
+  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
+  opacity:0; transition:opacity .18s ease; pointer-events:none; }
+.shot:hover .open, .shot:focus-visible .open { opacity:1; }
+
+.is-screen .shot img { border:1px solid var(--line); border-radius:13px; box-shadow:var(--lift);
+  transition:box-shadow .2s ease, transform .2s ease; background:var(--surface); }
+.is-screen .shot:hover img { box-shadow:var(--lift-2); transform:translateY(-2px); }
+.is-figure .shot img { border:1px solid var(--line); border-radius:10px; transition:border-color .2s ease; }
+.is-figure .shot:hover img { border-color:var(--line-strong); }
+.plate > .shot { margin-left:62px; width:calc(100% - 62px); }
+
+/* ---------------------------------------------------------------- footer -- */
+.foot { margin-top:96px; padding:36px 0 60px; border-top:1px solid var(--line-strong);
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:16px 26px; }
+.foot strong { font-size:18px; color:var(--ink); letter-spacing:-.035em; }
+.foot p { color:var(--muted); flex:1 1 auto; }
+.foot a { font-size:14px; text-decoration:none; }
+.foot a:hover { text-decoration:underline; }
+
+/* -------------------------------------------------------------- lightbox -- */
+#box { position:fixed; inset:0; z-index:60; display:none; place-items:center; padding:22px;
+  background:color-mix(in srgb, #05070A 92%, transparent); cursor:zoom-out; }
+#box.on { display:grid; }
+#box img { max-width:100%; max-height:calc(100dvh - 44px); border-radius:8px; box-shadow:var(--lift-2); }
+#box .bar { position:fixed; left:0; right:0; bottom:14px; display:flex; justify-content:center;
+  gap:18px; font-family:var(--f-mono); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:rgba(255,255,255,.6); pointer-events:none; }
+
+@media (max-width:1120px) {
+  :root { --rail:0px; }
+  .rail { position:static; width:auto; flex-direction:row; flex-wrap:wrap; align-items:center;
+    gap:14px; padding:18px 20px; border-right:0; border-bottom:1px solid var(--line); }
+  .rail nav ul { flex-direction:row; flex-wrap:wrap; gap:2px; }
+  .rail-foot { margin:0; width:100%; }
+  main { margin-left:0; padding:26px 18px 0; }
+  .plate-head { grid-template-columns:1fr; }
+  .idx { display:none; }
+  .plate > .shot { margin-left:0; width:100%; }
+}
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none !important; } }
+</style>
+
+</head>
+<body id="top">
+<a class="skip" href="#screenshots">Skip to screenshots</a>
+
+<aside class="rail">
+  <div class="mark">
+    <strong>Particle.</strong>
+    <em>Product walkthrough</em>
+    <a href="#screenshots">Explore the product</a>
+  </div>
+  <nav aria-label="Chapters"><ul><li><a href="#cleansing"><span>01</span>Data cleansing</a></li><li><a href="#enrichment"><span>02</span>Enrichment</a></li><li><a href="#mapping"><span>03</span>Mapping</a></li><li><a href="#documents"><span>04</span>Documents</a></li><li><a href="#mock-load"><span>05</span>Mock load</a></li><li><a href="#decisions"><span>06</span>Decisions &amp; approvals</a></li><li><a href="#workflow"><span>07</span>The workflow</a></li><li><a href="#overview"><span>08</span>Project overview</a></li><li><a href="#setup"><span>09</span>Setup</a></li></ul></nav>
+  <p class="rail-foot">Autonomous conversion. Human control.</p>
+</aside>
+
+<main>
+  <header class="masthead">
+    <p class="tag">Agentic data conversion &middot; Oracle Fusion</p>
+    <h1>Month-long conversions, run in hours.</h1>
+    <p class="deck">Connect your source systems, including EBS, JDE, and more. Particle&rsquo;s AI agents run
+      the conversion to Oracle Fusion autonomously, from extraction to load. Your team reviews exceptions
+      and approves key decisions.</p>
+    <p class="problem">Data conversion holds up implementations. Teams spend weeks extracting records,
+      fixing inconsistent data, building mappings, and chasing failed loads. Each correction creates
+      another round of spreadsheets, checks, and approvals.</p>
+    <div class="pillars"><article class="pillar">
+  <p class="tag">01 / CLEAN</p>
+  <h3>Clean data.<br>Prepared autonomously.</h3>
+  <p>Particle extracts records, resolves duplicates, fills missing values from source evidence, validates addresses, and builds Fusion mappings. Remaining source issues come with the exact record and field to update.</p>
+</article><article class="pillar">
+  <p class="tag">02 / VERIFY</p>
+  <h3>A tested load.<br>Fewer surprises.</h3>
+  <p>An automated mock load catches rejects, missing dependencies, and target setup gaps before production. Each blocker comes with a diagnosis, a proposed fix, and the number of records it could recover.</p>
+</article><article class="pillar">
+  <p class="tag">03 / RECONCILE</p>
+  <h3>Every row reconciled.<br>Every change explained.</h3>
+  <p>Automatic reconciliation accounts for merges, exclusions, and rejects. The audit trail captures every action and its evidence. Your team reviews exceptions and approves key decisions before work continues.</p>
+</article></div>
+    <div class="turn">
+      <h2>Conversion runs autonomously.<br>Your team stays in control.</h2>
+      <a href="#screenshots">See it in action</a>
+    </div>
+  </header>
+
+  <div class="shots-head" id="screenshots">
+    <p class="tag">Inside a Particle conversion</p>
+    <h2>39 product screenshots. Open any image for a closer look.</h2>
+  </div>
+
+  <section class="chapter" id="cleansing">
+  <header class="chapter-head">
+    <p class="tag">01</p>
+    <h2>Data cleansing</h2>
+    <p class="lead">Data cleansing that runs autonomously.</p>
+    <p class="span">01 to 05</p>
+  </header>
+  <figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">01</span>
+    <div class="plate-words"><h3>Data issues resolved autonomously</h3><p>Particle handles the corrections and brings unresolved questions back for approval.</p></div>
+  </div>
+  <button class="shot" data-i="1">
+    <img src="img/02a-res-top.webp" width="2000" height="1250" alt="Data issues resolved autonomously" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">02</span>
+    <div class="plate-words"><h3>Clear ownership for remaining fixes</h3><p>Each issue points to the source data, mapping, or target setup that needs attention.</p></div>
+  </div>
+  <button class="shot" data-i="2">
+    <img src="img/02b-res-findings.webp" width="2000" height="2201" alt="Clear ownership for remaining fixes" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">03</span>
+    <div class="plate-words"><h3>Every correction explained</h3><p>Resolutions are recorded, including temporary values awaiting agreement.</p></div>
+  </div>
+  <button class="shot" data-i="3">
+    <img src="img/02c-res-resolutions.webp" width="2000" height="2472" alt="Every correction explained" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">04</span>
+    <div class="plate-words"><h3>Duplicates found. Merges proposed.</h3><p>Matching evidence and the surviving record are ready for your approval.</p></div>
+  </div>
+  <button class="shot" data-i="4">
+    <img src="img/02d-res-merge.webp" width="2000" height="677" alt="Duplicates found. Merges proposed." loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">05</span>
+    <div class="plate-words"><h3>Uncertain values flagged for review</h3><p>When the evidence is insufficient, the missing value becomes a question for your team.</p></div>
+  </div>
+  <button class="shot" data-i="5">
+    <img src="img/02g-res-taxpayer.webp" width="2000" height="2639" alt="Uncertain values flagged for review" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure>
+</section><section class="chapter" id="enrichment">
+  <header class="chapter-head">
+    <p class="tag">02</p>
+    <h2>Enrichment</h2>
+    <p class="lead">Missing data, filled with evidence.</p>
+    <p class="span">06 to 07</p>
+  </header>
+  <figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">06</span>
+    <div class="plate-words"><h3>Addresses validated. Records enriched.</h3><p>Lookup results include their source and confidence.</p></div>
+  </div>
+  <button class="shot" data-i="6">
+    <img src="img/03a-enrich-top.webp" width="2000" height="1250" alt="Addresses validated. Records enriched." loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">07</span>
+    <div class="plate-words"><h3>Confidence made visible</h3><p>Uncertain enrichment results are easy to find.</p></div>
+  </div>
+  <button class="shot" data-i="7">
+    <img src="img/03b-enrich-table.webp" width="2000" height="3250" alt="Confidence made visible" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure>
+</section><section class="chapter" id="mapping">
+  <header class="chapter-head">
+    <p class="tag">03</p>
+    <h2>Mapping</h2>
+    <p class="lead">Fusion mappings, built automatically.</p>
+    <p class="span">08 to 08</p>
+  </header>
+  <figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">08</span>
+    <div class="plate-words"><h3>Mappings generated for Fusion</h3><p>Review the result or request changes in plain language.</p></div>
+  </div>
+  <button class="shot" data-i="8">
+    <img src="img/04a-mapping-top.webp" width="2000" height="1250" alt="Mappings generated for Fusion" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure>
+</section><section class="chapter" id="documents">
+  <header class="chapter-head">
+    <p class="tag">04</p>
+    <h2>Documents</h2>
+    <p class="lead">From source records to load-ready files.</p>
+    <p class="span">09 to 13</p>
+  </header>
+  <figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">09</span>
+    <div class="plate-words"><h3>Source data extracted and verified</h3><p>Files, record counts, and integrity checks are captured automatically.</p></div>
+  </div>
+  <button class="shot" data-i="9">
+    <img src="img/05g-doc-extract-top.webp" width="2000" height="1875" alt="Source data extracted and verified" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">10</span>
+    <div class="plate-words"><h3>Extracted records, ready to inspect</h3></div>
+  </div>
+  <button class="shot" data-i="10">
+    <img src="img/05b-doc-extract-csv.webp" width="2000" height="2375" alt="Extracted records, ready to inspect" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">11</span>
+    <div class="plate-words"><h3>Fusion load files prepared automatically</h3><p>Converted records are ready for review before load approval.</p></div>
+  </div>
+  <button class="shot" data-i="11">
+    <img src="img/05f-doc-transform-top.webp" width="2000" height="1875" alt="Fusion load files prepared automatically" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">12</span>
+    <div class="plate-words"><h3>Load files with readable column names</h3></div>
+  </div>
+  <button class="shot" data-i="12">
+    <img src="img/05d-doc-fbdi-csv.webp" width="2000" height="2375" alt="Load files with readable column names" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">13</span>
+    <div class="plate-words"><h3>Approved decisions carried forward</h3><p>Agents reuse recorded decisions throughout the conversion.</p></div>
+  </div>
+  <button class="shot" data-i="13">
+    <img src="img/05e-doc-memory.webp" width="2000" height="2375" alt="Approved decisions carried forward" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure>
+</section><section class="chapter" id="mock-load">
+  <header class="chapter-head">
+    <p class="tag">05</p>
+    <h2>Mock load</h2>
+    <p class="lead">A rehearsal before the real load.</p>
+    <p class="span">14 to 21</p>
+  </header>
+  <figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">14</span>
+    <div class="plate-words"><h3>The load, rehearsed</h3><p>A mock load identifies accepted records, rejects, and holds before production.</p></div>
+  </div>
+  <button class="shot" data-i="14">
+    <img src="img/01a-report-top.webp" width="2000" height="1250" alt="The load, rehearsed" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">15</span>
+    <div class="plate-words"><h3>Every row accounted for</h3><p>Automatic reconciliation traces each source record and explains exclusions and rejects.</p></div>
+  </div>
+  <button class="shot" data-i="15">
+    <img src="img/01b-report-flow.webp" width="2000" height="955" alt="Every row accounted for" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">16</span>
+    <div class="plate-words"><h3>Readiness checked against your criteria</h3></div>
+  </div>
+  <button class="shot" data-i="16">
+    <img src="img/01c-report-criteria.webp" width="2000" height="861" alt="Readiness checked against your criteria" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">17</span>
+    <div class="plate-words"><h3>Every exclusion traced</h3><p>The results show exactly where records drop out and why.</p></div>
+  </div>
+  <button class="shot" data-i="17">
+    <img src="img/01d-report-waterfall.webp" width="2000" height="567" alt="Every exclusion traced" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">18</span>
+    <div class="plate-words"><h3>Load files checked automatically</h3><p>Ready files and unresolved issues are clearly separated.</p></div>
+  </div>
+  <button class="shot" data-i="18">
+    <img src="img/01e-report-files.webp" width="2000" height="683" alt="Load files checked automatically" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">19</span>
+    <div class="plate-words"><h3>Blockers diagnosed</h3><p>Source-data issues, mapping errors, and missing target setup are identified automatically.</p></div>
+  </div>
+  <button class="shot" data-i="19">
+    <img src="img/01f-report-shortfall.webp" width="2000" height="626" alt="Blockers diagnosed" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">20</span>
+    <div class="plate-words"><h3>Fixes ranked by impact</h3><p>Each proposed correction shows how many records it could recover.</p></div>
+  </div>
+  <button class="shot" data-i="20">
+    <img src="img/01g-report-recovery.webp" width="2000" height="951" alt="Fixes ranked by impact" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">21</span>
+    <div class="plate-words"><h3>Related records checked together</h3><p>Duplicates, missing parents, and incomplete documents are caught before loading.</p></div>
+  </div>
+  <button class="shot" data-i="21">
+    <img src="img/01h-report-findings.webp" width="2000" height="500" alt="Related records checked together" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure>
+</section><section class="chapter" id="decisions">
+  <header class="chapter-head">
+    <p class="tag">06</p>
+    <h2>Decisions &amp; approvals</h2>
+    <p class="lead">The decisions that need your judgment.</p>
+    <p class="span">22 to 24</p>
+  </header>
+  <figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">22</span>
+    <div class="plate-words"><h3>The reasoning stays on record</h3><p>Scope, conversion criteria, and decision rationale remain traceable.</p></div>
+  </div>
+  <button class="shot" data-i="22">
+    <img src="img/06a-pipeline.webp" width="2000" height="1875" alt="The reasoning stays on record" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">23</span>
+    <div class="plate-words"><h3>Follow-up stays with the conversion</h3><p>Tickets, approvals, and supporting documents are connected in one place.</p></div>
+  </div>
+  <button class="shot" data-i="23">
+    <img src="img/06d-pipeline-tickets.webp" width="2000" height="2994" alt="Follow-up stays with the conversion" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">24</span>
+    <div class="plate-words"><h3>Outstanding approvals, in one place</h3></div>
+  </div>
+  <button class="shot" data-i="24">
+    <img src="img/06c-pipeline-blocked.webp" width="2000" height="1875" alt="Outstanding approvals, in one place" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure>
+</section><section class="chapter" id="workflow">
+  <header class="chapter-head">
+    <p class="tag">07</p>
+    <h2>The workflow</h2>
+    <p class="lead">One continuous flow, from extract to load.</p>
+    <p class="span">25 to 32</p>
+  </header>
+  <figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">25</span>
+    <div class="plate-words"><h3>The full conversion, running autonomously</h3><p>Progress and time spent are visible at every stage.</p></div>
+  </div>
+  <button class="shot" data-i="25">
+    <img src="img/07a-run.webp" width="2000" height="1250" alt="The full conversion, running autonomously" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">26</span>
+    <div class="plate-words"><h3>Automatic source extraction</h3></div>
+  </div>
+  <button class="shot" data-i="26">
+    <img src="img/07b-run-extract.webp" width="2000" height="1250" alt="Automatic source extraction" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">27</span>
+    <div class="plate-words"><h3>Data-quality checks in progress</h3></div>
+  </div>
+  <button class="shot" data-i="27">
+    <img src="img/07c-run-profiling.webp" width="2000" height="1250" alt="Data-quality checks in progress" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">28</span>
+    <div class="plate-words"><h3>Transformation into Fusion format</h3></div>
+  </div>
+  <button class="shot" data-i="28">
+    <img src="img/07e-run-transform.webp" width="2000" height="1250" alt="Transformation into Fusion format" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">29</span>
+    <div class="plate-words"><h3>Staging and load checks</h3></div>
+  </div>
+  <button class="shot" data-i="29">
+    <img src="img/07f-run-load.webp" width="2000" height="1250" alt="Staging and load checks" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">30</span>
+    <div class="plate-words"><h3>A complete trail of agent actions</h3><p>Each step records its instructions, actions, and results.</p></div>
+  </div>
+  <button class="shot" data-i="30">
+    <img src="img/07d-run-step.webp" width="2000" height="1250" alt="A complete trail of agent actions" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">31</span>
+    <div class="plate-words"><h3>A pause for approval</h3><p>The workflow waits for the required decision before continuing.</p></div>
+  </div>
+  <button class="shot" data-i="31">
+    <img src="img/07g-run-gate.webp" width="2000" height="1250" alt="A pause for approval" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">32</span>
+    <div class="plate-words"><h3>The decision, with its context</h3><p>Approval requests and responses stay on record.</p></div>
+  </div>
+  <button class="shot" data-i="32">
+    <img src="img/07h-run-gate-step.webp" width="2000" height="1250" alt="The decision, with its context" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure>
+</section><section class="chapter" id="overview">
+  <header class="chapter-head">
+    <p class="tag">08</p>
+    <h2>Project overview</h2>
+    <p class="lead">Progress, blockers, and next decisions.</p>
+    <p class="span">33 to 35</p>
+  </header>
+  <figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">33</span>
+    <div class="plate-words"><h3>What needs your attention</h3><p>Pending approvals and waiting conversions are surfaced across the project.</p></div>
+  </div>
+  <button class="shot" data-i="33">
+    <img src="img/08a-dashboard.webp" width="2000" height="1250" alt="What needs your attention" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">34</span>
+    <div class="plate-words"><h3>Processing time and approval waits</h3><p>Bottlenecks are visible at each stage.</p></div>
+  </div>
+  <button class="shot" data-i="34">
+    <img src="img/08b-dashboard-more.webp" width="2000" height="2581" alt="Processing time and approval waits" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">35</span>
+    <div class="plate-words"><h3>Every conversion in one view</h3></div>
+  </div>
+  <button class="shot" data-i="35">
+    <img src="img/08c-pipelines.webp" width="2000" height="1250" alt="Every conversion in one view" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure>
+</section><section class="chapter" id="setup">
+  <header class="chapter-head">
+    <p class="tag">09</p>
+    <h2>Setup</h2>
+    <p class="lead">Your systems. Your controls.</p>
+    <p class="span">36 to 39</p>
+  </header>
+  <figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">36</span>
+    <div class="plate-words"><h3>Connect your source systems</h3><p>EBS, JDE, and more connect to the conversion workflow.</p></div>
+  </div>
+  <button class="shot" data-i="36">
+    <img src="img/09a-connectors.webp" width="2000" height="1904" alt="Connect your source systems" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">37</span>
+    <div class="plate-words"><h3>Enrichment within your limits</h3><p>Choose the lookup services and set their budgets.</p></div>
+  </div>
+  <button class="shot" data-i="37">
+    <img src="img/09b-settings.webp" width="2000" height="2000" alt="Enrichment within your limits" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-figure">
+  <div class="plate-head">
+    <span class="idx">38</span>
+    <div class="plate-words"><h3>AI settings for each agent</h3></div>
+  </div>
+  <button class="shot" data-i="38">
+    <img src="img/09d-settings-agents.webp" width="2000" height="3293" alt="AI settings for each agent" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure><figure class="plate is-screen">
+  <div class="plate-head">
+    <span class="idx">39</span>
+    <div class="plate-words"><h3>The workflow behind the automation</h3><p>Extraction, cleansing, mapping, and loading follow defined approval gates and revision loops.</p></div>
+  </div>
+  <button class="shot" data-i="39">
+    <img src="img/09c-admin-graph.webp" width="2000" height="2000" alt="The workflow behind the automation" loading="lazy" decoding="async">
+    <span class="open">View full screenshot</span>
+  </button>
+</figure>
+</section>
+
+  <footer class="foot">
+    <strong>Particle.</strong>
+    <p>Autonomous conversion. Human control.</p>
+    <a href="#top">Back to top</a>
+  </footer>
+</main>
+
+<div id="box" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <img alt="">
+  <div class="bar"><span id="at"></span><span>&larr; &rarr;</span><span>Esc</span></div>
+</div>
+<script>
+const FRAMES = ["img/02a-res-top.webp", "img/02b-res-findings.webp", "img/02c-res-resolutions.webp", "img/02d-res-merge.webp", "img/02g-res-taxpayer.webp", "img/03a-enrich-top.webp", "img/03b-enrich-table.webp", "img/04a-mapping-top.webp", "img/05g-doc-extract-top.webp", "img/05b-doc-extract-csv.webp", "img/05f-doc-transform-top.webp", "img/05d-doc-fbdi-csv.webp", "img/05e-doc-memory.webp", "img/01a-report-top.webp", "img/01b-report-flow.webp", "img/01c-report-criteria.webp", "img/01d-report-waterfall.webp", "img/01e-report-files.webp", "img/01f-report-shortfall.webp", "img/01g-report-recovery.webp", "img/01h-report-findings.webp", "img/06a-pipeline.webp", "img/06d-pipeline-tickets.webp", "img/06c-pipeline-blocked.webp", "img/07a-run.webp", "img/07b-run-extract.webp", "img/07c-run-profiling.webp", "img/07e-run-transform.webp", "img/07f-run-load.webp", "img/07d-run-step.webp", "img/07g-run-gate.webp", "img/07h-run-gate-step.webp", "img/08a-dashboard.webp", "img/08b-dashboard-more.webp", "img/08c-pipelines.webp", "img/09a-connectors.webp", "img/09b-settings.webp", "img/09d-settings-agents.webp", "img/09c-admin-graph.webp"];
+const box = document.getElementById('box');
+const img = box.querySelector('img');
+const at  = document.getElementById('at');
+let i = 0;
+const show = k => { i = (k + FRAMES.length) % FRAMES.length; img.src = FRAMES[i];
+  at.textContent = (i + 1) + ' / ' + FRAMES.length; };
+const open = k => { show(k); box.classList.add('on'); document.body.style.overflow = 'hidden'; };
+const close = () => { box.classList.remove('on'); document.body.style.overflow = ''; };
+document.querySelectorAll('[data-i]').forEach(b =>
+  b.addEventListener('click', () => open(+b.dataset.i - 1)));
+box.addEventListener('click', close);
+addEventListener('keydown', e => {
+  if (!box.classList.contains('on')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'ArrowRight') { e.preventDefault(); show(i + 1); }
+  if (e.key === 'ArrowLeft')  { e.preventDefault(); show(i - 1); }
+});
+const links = [...document.querySelectorAll('.rail nav a')];
+const seen = new Map();
+const io = new IntersectionObserver(es => {
+  es.forEach(e => seen.set(e.target.id, e.isIntersecting));
+  const live = links.find(a => seen.get(a.getAttribute('href').slice(1)));
+  links.forEach(a => a.setAttribute('aria-current', String(a === live)));
+}, { rootMargin: '-12% 0px -72% 0px' });
+document.querySelectorAll('.chapter').forEach(c => io.observe(c));
+</script>
+
+</body>
+</html>
